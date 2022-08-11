@@ -3,22 +3,21 @@ import { ReactComponent as Logo } from 'assets/logo.svg';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
-import { useCarrinhoContext } from 'common/contexts/Carrinho';
+import { useCarrinhoContext } from 'common/context/Carrinho';
 import { useHistory } from 'react-router-dom';
 
 export default function NavBar() {
-  const { quantidadeCarrinho } = useCarrinhoContext();
+  const { quantidadeProdutos } = useCarrinhoContext();
   const history = useHistory();
   return (
     <Nav>
       <Logo />
       <IconButton
-        onClick={() => history.push('/carrinho')}
-        disabled={quantidadeCarrinho === 0}
-      >
+        disabled={quantidadeProdutos === 0}
+        onClick={() => history.push('/carrinho')}>
         <Badge
-          badgeContent={quantidadeCarrinho}
           color="primary"
+          badgeContent={quantidadeProdutos}
         >
           <ShoppingCartIcon />
         </Badge>
